@@ -1,5 +1,9 @@
 # Start with the Ubuntu base image
-FROM ubuntu:latest
+# Pinned to 22.04 LTS (jammy): the dotnet/backports PPA provides
+# dotnet-sdk-6.0 / dotnet-sdk-8.0 for it, and the libssl1.1 .deb below
+# is built against it. Newer non-LTS releases (e.g. "resolute") have no
+# dotnet-sdk-6.0 candidate, which breaks the build.
+FROM ubuntu:22.04
 
 # Install Common Software Properties
 RUN apt-get update && \
